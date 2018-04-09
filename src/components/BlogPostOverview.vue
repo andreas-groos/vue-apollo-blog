@@ -1,11 +1,13 @@
 <template>
   <div>
     <h4 v-if="loading">Loading...</h4>
-    <p v-if="posts && posts.length > 0">{{posts[1].title}}</p>
+    <BlogList v-else
+              :posts="posts" />
   </div>
 </template>
 
 <script>
+import BlogList from "./BlogList";
 import { GET_ALL_POSTS } from "../apollo/queries";
 
 export default {
@@ -20,9 +22,10 @@ export default {
     posts: {
       query: GET_ALL_POSTS
     }
-  }
+  },
+  components: { BlogList }
 };
 </script>
 
-<style>
+<style scoped>
 </style>

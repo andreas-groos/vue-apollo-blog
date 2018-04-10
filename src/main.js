@@ -5,12 +5,12 @@ import store from "./store";
 import apolloClient from "./apollo";
 import VueApollo from "vue-apollo";
 import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
 
 import "./registerServiceWorker";
 
-Vue.config.productionTip = false;
+import "vuetify/dist/vuetify.min.css";
 
+Vue.config.productionTip = false;
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient
 });

@@ -16,10 +16,12 @@
           </v-card-media>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline
+              <h1 class="headline
                 mb-0
-                ">{{post.title}}</h3>
-              <div>{{post.blogText.substring(0,200)}}</div>
+                ">
+                <b>{{post.title}}</b>
+              </h1>
+              <VueMarkdown :source="post.blogText.substring(0,200)"></VueMarkdown>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -33,20 +35,10 @@
       </router-link>
     </v-flex>
   </v-layout>
-  <!-- <ul>
-    <li v-for="post
-                in
-                posts
-                "
-        :key="post.id
-                ">
-      <h4>
-      </h4>
-    </li>
-  </ul> -->
 </template>
 
 <script>
+import VueMarkdown from "vue-markdown";
 export default {
   name: "BlogList",
   props: {
@@ -56,7 +48,8 @@ export default {
     return {
       tag: ["animals", "architecture", "nature", "people", "tech"]
     };
-  }
+  },
+  components: { VueMarkdown }
 };
 </script>
 

@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <v-app>
+      <Sidebar></Sidebar>
+      <v-content>
+        <v-container fluid>
+          <router-view/>
+        </v-container>
+      </v-content>
+    </v-app>
   </div>
 </template>
+
+<script>
+import Sidebar from "./components/Sidebar";
+export default {
+  name: "App",
+  components: { Sidebar }
+};
+</script>
+
 
 <style lang="scss">
 #app {
@@ -16,11 +28,15 @@
 }
 #nav {
   text-align: center;
-  color: #2c3e50;
-  padding: 30px;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: whitesmoke;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 3px;
+
     &.router-link-exact-active {
       color: #42b983;
     }

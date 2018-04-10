@@ -24,7 +24,7 @@
       <v-btn @click="save"
              flat
              outline
-             color="blue">Save
+             color="primary">Save
         <v-icon class="pl-2">save</v-icon>
       </v-btn>
       <v-btn flat

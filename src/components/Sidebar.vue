@@ -6,6 +6,7 @@
                        dark
                        permanent
                        width="200">
+
     <v-list>
       <v-list-tile v-for="item in items"
                    :key="item.title">

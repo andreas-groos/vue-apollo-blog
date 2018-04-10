@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <h1 class="text-sm-center">Apollo Blog</h1>
+    <h1 class="text-sm-center vue-accent">Apollo Blog</h1>
+    <v-divider></v-divider>
     <blog-post-overview />
   </div>
 </template>
@@ -16,3 +17,10 @@ export default {
   }
 };
 </script>
+
+<style >
+.vue-accent {
+  color: #42b983;
+  background: #424242;
+}
+</style>

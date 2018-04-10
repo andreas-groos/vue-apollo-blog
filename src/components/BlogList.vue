@@ -46,7 +46,7 @@
           <v-btn flat
                  block
                  outline
-                 color="blue
+                 color="primary
                 ">read more</v-btn>
         </v-card-actions>
       </v-card>

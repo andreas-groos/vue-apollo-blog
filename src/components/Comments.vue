@@ -13,6 +13,18 @@
             <li v-for="comment in comments"
                 :key="comment.date">
               <div class="comment-box">
+                <v-layout row
+                          class="pt-2">
+                  <v-flex>
+
+                    <h6>{{comment.user}}</h6>
+                  </v-flex>
+                  <v-flex>
+
+                    <h6 class="text-xs-right">{{ago(comment.date)}} ago</h6>
+                  </v-flex>
+
+                </v-layout>
                 <p class="pb-0">
                   {{comment.text}}
                 </p>
@@ -52,6 +64,7 @@
 import { ADD_COMMENT } from "../apollo/mutations.js";
 import { GET_POST } from "../apollo/queries.js";
 import gql from "graphql-tag";
+import { distanceInWords } from "date-fns";
 
 export default {
   name: "Comments",
@@ -62,6 +75,7 @@ export default {
     };
   },
   methods: {
+    ago: d => distanceInWords(new Date(), d),
     submit: function() {
       this.$apollo
         .mutate({
@@ -88,7 +102,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style  scoped>
 .pale {
   color: grey;
 }
@@ -96,12 +110,16 @@ li {
   list-style-type: none;
 }
 .comment-box {
-  border: 1px solid #424242;
+  border: 1px solid lightgrey;
   border-radius: 3px;
   margin: 0.5rem 0;
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.5rem;
   background: white;
   color: #424242;
+  /* font-size: 0.8rem; */
+}
+.comment-box > p {
+  margin: 4px 0;
 }
 .list-enter-active,
 .list-leave-active {

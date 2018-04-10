@@ -39,6 +39,12 @@ export default {
 
     &.router-link-exact-active {
       color: #42b983;
+      background: #42b983;
+      padding: 5px 0;
+    }
+
+    &.router-link-active {
+      color: #42b983;
     }
   }
 }

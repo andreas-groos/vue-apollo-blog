@@ -11,7 +11,7 @@
                    :key="item.title">
         <router-link :to="item.route">
           <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="whitesmoke">{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <!-- <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
@@ -24,11 +24,6 @@
 </template>
 
 <script>
-// import Home from "@/views/Home.vue";
-// import Write from "@/views/Write.vue";
-// import Settings from "@/views/Settings.vue";
-// import About from "@/views/About.vue";
-
 export default {
   name: "Sidebar",
   data() {

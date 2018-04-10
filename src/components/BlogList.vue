@@ -80,7 +80,7 @@ export default {
 .img-container {
   position: relative;
   text-align: center;
-  color: white;
+  color: whitesmoke;
   font-weight: 700;
 }
 

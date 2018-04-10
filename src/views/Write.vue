@@ -36,7 +36,6 @@
                 ">cancel</v-icon>
 
       </v-btn>
-
     </v-layout>
   </div>
 </template>
@@ -66,7 +65,7 @@ export default {
           mutation: ADD_POST,
           variables: {
             authorName: "Andreas",
-            title: this.title,
+            title: this.title + "\n",
             blogText: this.value
           },
           // NOTE: Seems like a very complicated way to update!

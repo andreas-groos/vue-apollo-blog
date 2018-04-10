@@ -8,40 +8,41 @@
             class="my-2"
             v-for="(post,index) in posts"
             :key="post.id">
-      <router-link class="no-underline"
-                   :to="'post/' + post.id">
-        <v-card class="ma-2"
-                height="100%">
-          <v-card-media :src="`https://placeimg.com/640/480/${tag[index % 5]}`"
-                        height="200px">
-          </v-card-media>
-          <v-flex fill-height>
-            <v-card-title primary-title>
-              <h1 class="headline
+      <v-card class="ma-2"
+              hover
+              height="100%"
+              :to="'post/' + post.id">
+        <v-card-media :src="`https://placeimg.com/640/480/${tag[index % 5]}`"
+                      height="200px">
+        </v-card-media>
+        <v-card-title primary-title>
+
+          <h1 class="headline
                 mb-0 
                 ">
-                <b>{{post.title}}</b>
-              </h1>
-              <div>
-                <div>
-                  <h4>
-                    <i>by </i>{{post.authorName}} </h4>
-                </div>
-                <h4 class="text-xs-right">{{d(post.createdAt)}}</h4>
-              </div>
-              <VueMarkdown :source="post.blogText.substring(0,200)+'...'"></VueMarkdown>
-            </v-card-title>
-            <v-spacer></v-spacer>
-            <v-card-actions>
-              <v-btn flat
-                     block
-                     outline
-                     color="blue
+            {{post.title}}
+          </h1>
+        </v-card-title>
+        <v-card-text>
+          <v-layout row>
+            <v-flex>
+              <h4>
+                <i>by </i>{{post.authorName}} </h4>
+            </v-flex>
+            <v-flex>
+              <h4 class="text-xs-right">{{d(post.createdAt)}}</h4>
+            </v-flex>
+          </v-layout>
+          <VueMarkdown :source="post.blogText.substring(0,200)+'...'"></VueMarkdown>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn flat
+                 block
+                 outline
+                 color="blue
                 ">read more</v-btn>
-            </v-card-actions>
-          </v-flex>
-        </v-card>
-      </router-link>
+        </v-card-actions>
+      </v-card>
     </v-flex>
   </v-layout>
 </template>
@@ -67,7 +68,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.no-underline {
-  text-decoration: none;
-}
+// TODO: Get 'read more' button aligned to bottom of card
+// https://codepen.io/andreas-groos/pen/zWbxmO?editors=1100
 </style>

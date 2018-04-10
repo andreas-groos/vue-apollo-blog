@@ -1,6 +1,8 @@
 <template>
   <div>
     <h4 v-if="loading">Loading...</h4>
+    <h4 v-if="posts.length === 0"
+        class="text-xs-center">No posts yet, go and write one!</h4>
     <BlogList v-else
               :posts="posts" />
   </div>

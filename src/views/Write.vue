@@ -3,6 +3,8 @@
     <v-layout row
               justify-center
               class="my-2 elevation-3">
+      <v-progress-linear v-if="submitting"
+                         :indeterminate="true"></v-progress-linear>
 
       <h1>
         <input type="text"
@@ -43,26 +45,44 @@
 import MavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 
+import gql from "graphql-tag";
 import { ADD_POST } from "../apollo/mutations";
+import { GET_ALL_POSTS } from "../apollo/queries";
 
 export default {
   name: "write",
   data() {
     return {
       value: "",
-      title: ""
+      title: "",
+      submitting: false
     };
   },
   methods: {
     save: function() {
-      this.$apollo.mutate({
-        mutation: ADD_POST,
-        variables: {
-          authorName: "Andreas",
-          title: this.title,
-          blogText: this.value
-        }
-      });
+      this.submitting = true;
+      this.$apollo
+        .mutate({
+          mutation: ADD_POST,
+          variables: {
+            authorName: "Andreas",
+            title: this.title,
+            blogText: this.value
+          },
+          // NOTE: Seems like a very complicated way to update!
+          update: (store, { data: { createPost } }) => {
+            const data = store.readQuery({ query: GET_ALL_POSTS });
+            console.log("data", data);
+            data.posts.push(createPost);
+            store.writeQuery({ query: GET_ALL_POSTS, data });
+          }
+          // NOTE: refetchQueries didn't work, seemed to work in the React version
+          // refetchQueries: ["GET_ALL_POSTS"]
+        })
+        .then(data => {
+          console.log(data);
+          this.$router.push("/");
+        });
     }
   },
   // TODO: customize editor

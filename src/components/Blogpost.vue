@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h4>BlogPost</h4>
     <h4 v-if="loading">Loading...</h4>
     <div v-else>
       <h1>{{post.title}}</h1>
+      <hr class="mb-3">
       <VueMarkdown :source="post.blogText"></VueMarkdown>
       <div v-if="post.comments && post.comments.length">
         <ul>
@@ -18,6 +18,8 @@
 <script>
 import { GET_POST } from "../apollo/queries";
 import VueMarkdown from "vue-markdown";
+import Prism from "prismjs";
+
 export default {
   name: "BlogPost",
   props: {
@@ -29,6 +31,9 @@ export default {
       post: {},
       loading: 0
     };
+  },
+  mounted() {
+    Prism.highlightAll();
   },
   apollo: {
     post: {
@@ -43,10 +48,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+// TODO: make syntax highlighting better!
+@import "../../node_modules/prismjs/themes/prism-solarizedlight.css";
 img {
-  /*  TODO: figure out good styling for images */
-  max-width: 200px;
+  max-width: 25%;
   float: left;
+}
+h1 {
+  text-align: center;
 }
 </style>

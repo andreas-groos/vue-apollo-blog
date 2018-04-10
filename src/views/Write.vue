@@ -44,7 +44,6 @@
 import MavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 
-import gql from "graphql-tag";
 import { ADD_POST } from "../apollo/mutations";
 import { GET_ALL_POSTS } from "../apollo/queries";
 

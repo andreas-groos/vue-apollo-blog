@@ -9,6 +9,11 @@ export const GET_ALL_POSTS = gql`
       createdAt
       likes
       id
+      comments {
+        text
+        date
+        user
+      }
     }
   }
 `;

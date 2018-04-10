@@ -12,9 +12,16 @@
               hover
               height="100%"
               :to="'post/' + post.id">
-        <v-card-media :src="`https://placeimg.com/640/480/${tag[index % 5]}`"
-                      height="200px">
-        </v-card-media>
+        <div class="img-container">
+
+          <v-card-media :src="`https://placeimg.com/640/480/${tag[index % 5]}`"
+                        height="200px">
+          </v-card-media>
+          <p class="bottom-right">
+            {{post.comments.length}}
+            <v-icon color="white">comment</v-icon>
+          </p>
+        </div>
         <v-card-title primary-title>
 
           <h1 class="headline
@@ -70,4 +77,20 @@ export default {
 <style lang="scss" scoped>
 // TODO: Get 'read more' button aligned to bottom of card
 // https://codepen.io/andreas-groos/pen/zWbxmO?editors=1100
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: -3px;
+  right: 15px;
+  font-size: 1.3rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 5px;
+}
 </style>

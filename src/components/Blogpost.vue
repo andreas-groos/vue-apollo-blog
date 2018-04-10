@@ -4,13 +4,20 @@
     <div v-else>
       <h1>{{post.title}}</h1>
       <hr class="mb-3">
+      <h3>by {{post.authorName}}</h3>
+      <v-layout row
+                wrap
+                class="mb-3">
+        <v-flex>
+          <h4>{{d(post.createdAt)}}</h4>
+        </v-flex>
+        <v-flex>
+          <h6 class="text-xs-right">{{post.likes}} likes</h6>
+        </v-flex>
+      </v-layout>
       <VueMarkdown :source="post.blogText"></VueMarkdown>
-      <div v-if="post.comments && post.comments.length">
-        <ul>
-          <li v-for="comment in post.comments"
-              :key="comment.date">{{comment.text}}</li>
-        </ul>
-      </div>
+      <Comments :comments="post.comments"
+                :id="post.id" />
     </div>
   </div>
 </template>
@@ -19,13 +26,15 @@
 import { GET_POST } from "../apollo/queries";
 import VueMarkdown from "vue-markdown";
 import Prism from "prismjs";
+import { format } from "date-fns";
+import Comments from "./Comments.vue";
 
 export default {
   name: "BlogPost",
   props: {
     test: String
   },
-  components: { VueMarkdown },
+  components: { VueMarkdown, Comments },
   data() {
     return {
       post: {},
@@ -34,6 +43,9 @@ export default {
   },
   mounted() {
     Prism.highlightAll();
+  },
+  methods: {
+    d: d => format(d, "MMM-DD-YY HH:MMa")
   },
   apollo: {
     post: {
@@ -52,8 +64,8 @@ export default {
 // TODO: make syntax highlighting better!
 @import "../../node_modules/prismjs/themes/prism-solarizedlight.css";
 img {
-  max-width: 25%;
-  float: left;
+  // max-width: 25%;
+  // float: left;
 }
 h1 {
   text-align: center;

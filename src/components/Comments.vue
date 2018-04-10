@@ -8,16 +8,17 @@
           class="pale">Nobody commented yet</h2>
       <div v-else>
         <ul>
-
-          <li v-for="comment in comments"
-              :key="comment.date">
-            <div class="comment-box">
-              <p class="pb-0">
-                {{comment.text}}
-              </p>
-            </div>
-          </li>
-
+          <transition-group name="list"
+                            tag="p">
+            <li v-for="comment in comments"
+                :key="comment.date">
+              <div class="comment-box">
+                <p class="pb-0">
+                  {{comment.text}}
+                </p>
+              </div>
+            </li>
+          </transition-group>
         </ul>
       </div>
       <v-card class="mt-3">
@@ -101,5 +102,14 @@ li {
   padding: 0.5rem 0.5rem;
   background: white;
   color: #424242;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease-out;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  /* transform: translateX(-100%); */
 }
 </style>

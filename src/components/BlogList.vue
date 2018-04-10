@@ -4,18 +4,21 @@
     <v-flex xs12
             sm6
             md4
-            v-for="post in posts"
+            class="my-2"
+            v-for="(post,index) in posts"
             :key="post.id">
       <router-link class="no-underline"
                    :to="'post/' + post.id">
-        <v-card class="ma-2">
-
-          <v-card-media src="https://placeimg.com/640/480/nature"
+        <v-card class="ma-2"
+                height="100%">
+          <v-card-media :src="`https://placeimg.com/640/480/${tag[index % 5]}`"
                         height="200px">
           </v-card-media>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">{{post.title}}</h3>
+              <h3 class="headline
+                mb-0
+                ">{{post.title}}</h3>
               <div>{{post.blogText.substring(0,200)}}</div>
             </div>
           </v-card-title>
@@ -23,15 +26,20 @@
             <v-btn flat
                    block
                    outline
-                   color="blue">read more</v-btn>
+                   color="blue
+                ">read more</v-btn>
           </v-card-actions>
         </v-card>
       </router-link>
     </v-flex>
   </v-layout>
   <!-- <ul>
-    <li v-for="post in posts"
-        :key="post.id">
+    <li v-for="post
+                in
+                posts
+                "
+        :key="post.id
+                ">
       <h4>
       </h4>
     </li>
@@ -43,6 +51,11 @@ export default {
   name: "BlogList",
   props: {
     posts: Array
+  },
+  data() {
+    return {
+      tag: ["animals", "architecture", "nature", "people", "tech"]
+    };
   }
 };
 </script>

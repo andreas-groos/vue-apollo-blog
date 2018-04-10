@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1 class="text-sm-center">Apollo Blog</h1>
     <blog-post-overview />
   </div>
 </template>

@@ -8,8 +8,7 @@
                        width="200">
     <v-list>
       <v-list-tile v-for="item in items"
-                   :key="item.title"
-                   @click="">
+                   :key="item.title">
         <router-link :to="item.route">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -57,6 +56,12 @@ export default {
           icon: "info",
           title: "About",
           route: "/about"
+        },
+
+        {
+          icon: "account_box",
+          title: "Account",
+          route: "/account"
         }
       ]
     };

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-layout row
+              justify-center
+              class="my-2 elevation-3">
+
+      <h1>
+        <input type="text"
+               v-model="title">
+      </h1>
+    </v-layout>
     <div id="editor">
 
       <MavonEditor style="height: 100%"
@@ -10,14 +19,22 @@
     <v-layout row
               justify-center
               mt-2>
+      <v-btn @click="save"
+             flat
+             outline
+             color="blue">Save
+        <v-icon class="pl-2">save</v-icon>
+      </v-btn>
       <v-btn flat
              outline
-             color="blue
-                ">Save</v-btn>
-      <v-btn flat
-             outline
-             color="red
-                ">Cancel</v-btn>
+             color="
+                red
+                ">Cancel
+        <v-icon class="pl-2
+                ">cancel</v-icon>
+
+      </v-btn>
+
     </v-layout>
   </div>
 </template>
@@ -25,16 +42,27 @@
 <script>
 import MavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
+
+import { ADD_POST } from "../apollo/mutations";
+
 export default {
   name: "write",
   data() {
     return {
-      value: ""
+      value: "",
+      title: ""
     };
   },
   methods: {
     save: function() {
-      alert("save");
+      this.$apollo.mutate({
+        mutation: ADD_POST,
+        variables: {
+          authorName: "Andreas",
+          title: this.title,
+          blogText: this.value
+        }
+      });
     }
   },
   // TODO: customize editor

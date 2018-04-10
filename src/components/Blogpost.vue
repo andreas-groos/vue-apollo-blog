@@ -44,4 +44,9 @@ export default {
 </script>
 
 <style>
+img {
+  /*  TODO: figure out good styling for images */
+  max-width: 200px;
+  float: left;
+}
 </style>

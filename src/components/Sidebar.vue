@@ -2,11 +2,10 @@
   <!-- <v-card class="d-inline-block pa-5"> -->
   <v-navigation-drawer id="nav"
                        app
+                       mini-variant
                        dark
                        permanent
-                       floating
-                       width="200"
-                       v-model="drawer">
+                       width="200">
     <v-list>
       <v-list-tile v-for="item in items"
                    :key="item.title"
@@ -15,9 +14,9 @@
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
+          <!-- <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
+          </v-list-tile-content> -->
         </router-link>
       </v-list-tile>
     </v-list>
@@ -35,7 +34,8 @@ export default {
   name: "Sidebar",
   data() {
     return {
-      drawer: false,
+      drawer: true,
+      mini: true,
       items: [
         {
           icon: "home",
@@ -54,7 +54,7 @@ export default {
           route: "/settings"
         },
         {
-          icon: "star",
+          icon: "info",
           title: "About",
           route: "/about"
         }

@@ -36,7 +36,6 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     border-radius: 3px;
-
     &.router-link-exact-active {
       color: #42b983;
       background: #42b983;

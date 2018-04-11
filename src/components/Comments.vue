@@ -33,29 +33,32 @@
           </transition-group>
         </ul>
       </div>
-      <v-card class="mt-3">
-        <v-container fluid
-                     class="pa-0 mt-2">
-          <v-layout wrap>
-            <v-flex xs12>
-              <div @keyup.ctrl.enter="submit">
-                <v-text-field label="New comment...."
-                              v-model="newComment"
-                              counter=250
-                              max="250"
-                              auto-grow
-                              multi-line
-                              full-width></v-text-field>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-      <small>ctrl-enter to submit</small>
-      <v-btn @click="submit"
-             block
-             outline
-             color="info">submit</v-btn>
+      <div v-if="user">
+        <v-card class="mt-3">
+          <v-container fluid
+                       class="pa-0 mt-2">
+            <v-layout wrap>
+              <v-flex xs12>
+                <div @keyup.ctrl.enter="submit">
+                  <v-text-field label="New comment...."
+                                v-model="newComment"
+                                counter=250
+                                max="250"
+                                auto-grow
+                                multi-line
+                                full-width></v-text-field>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+        <small>ctrl-enter to submit</small>
+        <v-btn @click="submit"
+               block
+               outline
+               color="info">submit</v-btn>
+      </div>
+      <h4 v-else>You need to be logged in to comment.</h4>
     </v-flex>
   </v-layout>
 </template>
@@ -74,6 +77,15 @@ export default {
       newComment: ""
     };
   },
+  computed: {
+    user: function() {
+      let user = null;
+      try {
+        user = this.$store.getters.getUser;
+      } catch (error) {}
+      return user;
+    }
+  },
   methods: {
     ago: d => distanceInWords(new Date(), d),
     submit: function() {
@@ -83,7 +95,7 @@ export default {
           variables: {
             text: this.newComment,
             id: this.id,
-            user: "Joe Blow"
+            user: this.user.email
           },
           refetchQueries: [
             {

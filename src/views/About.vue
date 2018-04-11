@@ -19,10 +19,7 @@
 
 <script>
 export default {
-  name: "About",
-  mounted() {
-    console.log("this.$store.user", this.$store.getters.getUser);
-  }
+  name: "About"
 };
 </script>
 

@@ -76,6 +76,7 @@ export default {
           }
           // NOTE: refetchQueries didn't work, seemed to work in the React version
           // refetchQueries: ["GET_ALL_POSTS"]
+          // NOTE: got refetching working in the post comment section of <Blogpost />
         })
         .then(data => {
           console.log(data);

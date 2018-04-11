@@ -70,8 +70,11 @@ export default {
       // let user = this.$store.getters.getUser;
       let newItems = [...this.items];
       if (this.user) {
-        newItems[4].icon = "fa-sign-out-alt";
-        newItems[4].route = "/log-out";
+        newItems.splice(4, 1, {
+          title: "Account",
+          icon: "fa-sign-out-alt",
+          route: "/log-out"
+        });
       }
       return newItems;
     }

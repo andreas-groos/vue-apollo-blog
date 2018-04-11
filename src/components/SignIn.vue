@@ -1,4 +1,5 @@
 
+
 <template>
   <div>
     <v-container fluid
@@ -30,8 +31,9 @@
                 max-width="500px">
         <v-card>
           <v-card-title>
-            <span>{{error.message}}</span>
-            <v-spacer></v-spacer>
+            <h3 class="mb-3">{{error.message}}</h3>
+            <h3>Do you want to
+              <router-link to='/sign-up'>sign up</router-link> instead? </h3>
           </v-card-title>
           <v-card-actions>
             <v-btn color="primary"

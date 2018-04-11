@@ -16,14 +16,38 @@
         </v-flex>
       </v-layout>
       <VueMarkdown :source="post.blogText"></VueMarkdown>
-      <Comments :comments="post.comments"
-                :id="post.id" />
+      <div v-if="user">
+
+        <div v-if="!alreadyLiked"
+             mb-3>
+          <v-layout row
+                    justify-center>
+
+            <v-icon size="
+           50px
+           "
+                    @click="likePost"
+                    color="red
+           ">fa-heart</v-icon>
+          </v-layout>
+        </div>
+        <v-layout v-else
+                  row
+                  justify-center>
+          <h4>You already 'liked' this post.</h4>
+        </v-layout>
+      </div>
+      <Comments :comments="post.comments
+           "
+                :id="post.id
+           " />
     </div>
   </div>
 </template>
 
 <script>
 import { GET_POST } from "../apollo/queries";
+import { ADD_LIKE } from "../apollo/mutations";
 import VueMarkdown from "vue-markdown";
 import Prism from "prismjs";
 import { format } from "date-fns";
@@ -45,7 +69,32 @@ export default {
     Prism.highlightAll();
   },
   methods: {
-    d: d => format(d, "MMM-DD-YY HH:MMa")
+    d: d => format(d, "MMM-DD-YY HH:MMa"),
+    likePost: function() {
+      this.$apollo.mutate({
+        mutation: ADD_LIKE,
+        variables: {
+          id: this.post.id,
+          user: this.user.uid
+        },
+        refetchQueries: [
+          {
+            query: GET_POST,
+            variables: { id: this.post.id }
+          }
+        ]
+      });
+    }
+  },
+  computed: {
+    user: function() {
+      return this.$store.getters.getUser;
+    },
+    alreadyLiked: function() {
+      if (this.post && this.post.likesBy && this.user) {
+        return this.post.likesBy.includes(this.user.uid);
+      } else return false;
+    }
   },
   apollo: {
     post: {

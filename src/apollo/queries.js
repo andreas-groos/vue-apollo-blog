@@ -18,6 +18,25 @@ export const GET_ALL_POSTS = gql`
   }
 `;
 
+export const GET_POSTS_BY_USER = gql`
+  query postsByUser($name: String!) {
+    postsByUser(name: $name) {
+      title
+      authorName
+      blogText
+      likes
+      createdAt
+      id
+      likesBy
+      comments {
+        text
+        date
+        user
+      }
+    }
+  }
+`;
+
 export const GET_POST = gql`
   query getPost($id: String!) {
     post(id: $id) {

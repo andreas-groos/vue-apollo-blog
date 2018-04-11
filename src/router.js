@@ -33,7 +33,9 @@ export default new Router({
     {
       path: "/settings",
       name: "settings",
-      component: Settings
+      component: Settings,
+      meta: { requiresAuth: true }
+      // FIXME: when starting on /settings the route get's denied before firebase can esatblish user status
     },
     {
       path: "/about",

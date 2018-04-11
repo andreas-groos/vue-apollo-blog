@@ -27,7 +27,6 @@
           <v-btn @click="abort">Abort</v-btn>
           <v-btn primary
                  outline
-                 :disabled="!valid"
                  to="sign-up">
             Sign Up
           </v-btn>
@@ -80,7 +79,6 @@ export default {
   },
   mounted() {
     const user = this.$store.getters.getUser;
-    console.log("user created()", user);
   },
   methods: {
     submit: function() {

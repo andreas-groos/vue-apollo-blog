@@ -56,6 +56,11 @@ export default {
       submitting: false
     };
   },
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    }
+  },
   methods: {
     save: function() {
       this.submitting = true;
@@ -63,7 +68,7 @@ export default {
         .mutate({
           mutation: ADD_POST,
           variables: {
-            authorName: "Andreas",
+            authorName: this.user.displayName,
             title: this.title + "\n",
             blogText: this.value
           },

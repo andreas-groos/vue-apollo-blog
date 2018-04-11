@@ -113,7 +113,8 @@ export default {
 // TODO: make syntax highlighting better!
 @import "../../node_modules/prismjs/themes/prism-solarizedlight.css";
 img {
-  // max-width: 25%;
+  // max-width: 50%;
+  // margin: 0 auto;
   // float: left;
 }
 h1 {

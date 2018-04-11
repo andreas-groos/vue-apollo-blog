@@ -1,10 +1,19 @@
 <template>
   <div id="app">
     <v-app>
-      <Sidebar></Sidebar>
+      <Sidebar :sidebar="sidebar"></Sidebar>
+      <v-toolbar app
+                 text-xs-center
+                 color="primary">
+        <v-toolbar-side-icon @click="toggleSidebar"></v-toolbar-side-icon>
+
+        <v-toolbar-title class=" text-xs-center">Apollo Blog</v-toolbar-title>
+
+      </v-toolbar>
+
       <v-content>
         <v-container fluid>
-          <router-view/>
+          <router-view />
         </v-container>
       </v-content>
     </v-app>
@@ -15,7 +24,22 @@
 import Sidebar from "./components/Sidebar";
 export default {
   name: "App",
-  components: { Sidebar }
+  components: { Sidebar },
+  data() {
+    return {
+      sidebar: false
+    };
+  },
+  methods: {
+    noSidebar: function() {
+      console.log("CLICKDFKJH");
+      this.sidebar = false;
+    },
+    toggleSidebar: function() {
+      console.log("toggle");
+      this.sidebar = !this.sidebar;
+    }
+  }
 };
 </script>
 

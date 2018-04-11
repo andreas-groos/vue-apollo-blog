@@ -1,6 +1,7 @@
 <template>
   <!-- <v-card class="d-inline-block pa-5"> -->
-  <v-navigation-drawer id="nav"
+  <v-navigation-drawer v-if="sidebar"
+                       id="nav"
                        app
                        mini-variant
                        dark
@@ -64,6 +65,7 @@ export default {
       ]
     };
   },
+  props: ["sidebar"],
   computed: {
     ...mapState(["user"]),
     userIcon: function() {

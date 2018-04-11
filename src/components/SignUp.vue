@@ -86,16 +86,19 @@ export default {
       if (this.$refs.formup.validate()) {
         Firebase.auth()
           .createUserWithEmailAndPassword(this.email, this.password)
-          .then(
-            user => {
-              this.$store.commit("setUser", { user });
-              this.$router.replace("/");
-            },
-            error => {
-              this.error = error;
-              this.dialog = true;
-            }
-          );
+          .then(user =>
+            user.updateProfile({
+              displayName: this.name
+            })
+          )
+          .then(user => {
+            this.$store.commit("setUser", { user });
+            this.$router.replace("/");
+          })
+          .catch(error => {
+            this.error = error;
+            this.dialog = true;
+          });
       }
     },
     clear: function() {

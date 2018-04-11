@@ -89,13 +89,17 @@ export default {
   methods: {
     ago: d => distanceInWords(new Date(), d),
     submit: function() {
+      let name = this.user.email;
+      if (this.user.displayName) {
+        name = this.user.displayName;
+      }
       this.$apollo
         .mutate({
           mutation: ADD_COMMENT,
           variables: {
             text: this.newComment,
             id: this.id,
-            user: this.user.email
+            user: name
           },
           refetchQueries: [
             {

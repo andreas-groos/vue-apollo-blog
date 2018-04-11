@@ -25,6 +25,12 @@
             Sign In
           </v-btn>
           <v-btn @click="abort">Abort</v-btn>
+          <v-btn primary
+                 outline
+                 :disabled="!valid"
+                 to="sign-up">
+            Sign Up
+          </v-btn>
         </v-form>
       </v-layout>
       <v-dialog v-model="dialog"

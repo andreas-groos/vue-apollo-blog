@@ -93,4 +93,8 @@ export default {
   padding: 5px;
   border-radius: 5px;
 }
+
+img {
+  // object-fit: contain;
+}
 </style>

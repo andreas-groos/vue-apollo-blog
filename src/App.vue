@@ -12,7 +12,8 @@
       </v-toolbar>
 
       <v-content>
-        <v-container fluid>
+        <v-container fluid
+                     fill-height>
           <router-view />
         </v-container>
       </v-content>
@@ -31,12 +32,7 @@ export default {
     };
   },
   methods: {
-    noSidebar: function() {
-      console.log("CLICKDFKJH");
-      this.sidebar = false;
-    },
     toggleSidebar: function() {
-      console.log("toggle");
       this.sidebar = !this.sidebar;
     }
   }

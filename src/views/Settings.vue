@@ -1,9 +1,15 @@
 <template>
-  <h1>Settings</h1>
+  <FullPage>
+    <h1 class="text-xs-center">Settings</h1>
+  </FullPage>
 </template>
 
 <script>
-export default {};
+import FullPage from "../components/FullPage.vue";
+export default {
+  name: "Settings",
+  components: { FullPage }
+};
 </script>
 
 <style>

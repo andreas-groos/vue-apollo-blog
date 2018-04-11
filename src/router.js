@@ -2,6 +2,7 @@ import About from "./views/About.vue";
 import BlogPost from "./components/Blogpost.vue";
 import FourOFour from "./components/FourOFour.vue";
 import Home from "./views/Home.vue";
+import LogOut from "./components/LogOut.vue";
 import Router from "vue-router";
 import Settings from "./views/Settings.vue";
 import SignIn from "./components/SignIn.vue";
@@ -48,6 +49,11 @@ export default new Router({
       path: "/sign-up",
       name: "sign-up",
       component: SignUp
+    },
+    {
+      path: "/log-out",
+      name: "log-out",
+      component: LogOut
     },
     {
       path: "*",

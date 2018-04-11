@@ -71,7 +71,7 @@ export default {
       let newItems = [...this.items];
       if (this.user) {
         newItems[4].icon = "fa-sign-out-alt";
-        newItems[4].route = "/sign-out";
+        newItems[4].route = "/log-out";
       }
       return newItems;
     }

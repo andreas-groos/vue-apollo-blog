@@ -9,7 +9,7 @@ export default new Vuex.Store({
     setUser: (state, payload) => {
       state.user = payload;
     },
-    notLoggedIn: store => {
+    notLoggedIn: state => {
       state.user = null;
     }
   },

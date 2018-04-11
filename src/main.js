@@ -40,6 +40,8 @@ Vue.use(Vuetify, {
 
 // protected routes
 router.beforeEach((to, from, next) => {
+  console.log("to", to);
+  console.log("from", from);
   const currentUser = Firebase.auth().currentUser;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if (requiresAuth && !currentUser) {
@@ -51,11 +53,18 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-Firebase.auth().onAuthStateChanged(function(user) {
-  new Vue({
-    router,
-    store,
-    provide: apolloProvider.provide(),
-    render: h => h(App)
-  }).$mount("#app");
-});
+new Vue({
+  router,
+  store,
+  provide: apolloProvider.provide(),
+  created() {
+    Firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        store.commit("setUser", user);
+      } else {
+        store.commit("notLoggedIn");
+      }
+    });
+  },
+  render: h => h(App)
+}).$mount("#app");

@@ -8,7 +8,7 @@
                        width="200">
 
     <v-list>
-      <v-list-tile v-for="item in items"
+      <v-list-tile v-for="item in userIcon"
                    :key="item.title">
         <router-link :to="item.route">
           <v-list-tile-action>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Sidebar",
   data() {
@@ -57,10 +59,22 @@ export default {
         {
           icon: "account_box",
           title: "Account",
-          route: "/account"
+          route: "/sign-in"
         }
       ]
     };
+  },
+  computed: {
+    ...mapState(["user"]),
+    userIcon: function() {
+      // let user = this.$store.getters.getUser;
+      let newItems = [...this.items];
+      if (this.user) {
+        newItems[4].icon = "fa-sign-out-alt";
+        newItems[4].route = "/sign-out";
+      }
+      return newItems;
+    }
   }
 };
 </script>

@@ -66,9 +66,13 @@ export default {
       passwordRules: [
         v => !!v || "Password is required",
         v =>
-          (v && v.length > 8) || "Password must be at least 8 characters long"
+          (v && v.length >= 8) || "Password must be at least 8 characters long"
       ]
     };
+  },
+  mounted() {
+    const user = this.$store.getters.getUser;
+    console.log("user created()", user);
   },
   methods: {
     submit: function() {
@@ -76,6 +80,7 @@ export default {
         Firebase.auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
+            this.$store.commit("setUser", { user });
             this.$router.replace("write");
           })
           .catch(error => {

@@ -77,7 +77,7 @@ export default {
       passwordRules: [
         v => !!v || "Password is required",
         v =>
-          (v && v.length > 8) || "Password must be at least 8 characters long"
+          (v && v.length >= 8) || "Password must be at least 8 characters long"
       ]
     };
   },
@@ -88,7 +88,8 @@ export default {
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(
             user => {
-              this.$router.replace("home");
+              this.$store.commit("setUser", { user });
+              this.$router.replace("/");
             },
             error => {
               this.error = error;
